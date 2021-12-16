@@ -10,12 +10,18 @@
 
 // console.log(typeof '22' === string);
 
+const secretNumber = Math.trunc(Math.random() * 20) + 1;
+
+document.querySelector('.number').textContent = secretNumber;
+
 const clickEventhandler = () => {
     const guess = document.querySelector('.guess').value;
     const guessNumber = parseStringToNumber(guess);
     console.log(guessNumber);
     if (!guessNumber) {
         noValidInput();
+    } else if (guessNumber === secretNumber) {
+        bingo();
     };
 };
 
@@ -26,3 +32,4 @@ const parseStringToNumber = (input) => input !== '' && typeof input === 'string'
 
 const noValidInput = () => document.querySelector('.message').textContent = '🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️ No number!';
 
+const bingo = () => document.querySelector('.message').textContent = '💃💃💃💃💃💃💃💃💃💃💃💃💃💃💃 Congratulations!!!';
