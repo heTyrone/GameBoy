@@ -30,13 +30,13 @@ const clickEventhandler = () => {
         isLoseGame();
         if (!loseGame) {
             biggerThanSecretNumber();
-            reduceScore();
+            changeScore();
         }
     } else if (guessNumber < secretNumber) {
         isLoseGame();
         if (!loseGame) {
             smallerThanSecretNumber();
-            reduceScore();
+            changeScore();
         }
     };
 };
@@ -55,16 +55,21 @@ const biggerThanSecretNumber = () => document.querySelector('.message').textCont
 const smallerThanSecretNumber = () => document.querySelector('.message').textContent = 'need biggerrrrr';
 
 // const reduceScore = () => document.querySelector('.score').textContent = score - 1;
+const displayNewScore = () => document.querySelector('.score').textContent = score;
 
-const reduceScore = () => {
-    score--;
-    document.querySelector('.score').textContent = score
+const reduceScore = () => score--;
+
+const changeScore = () => {
+    reduceScore();
+    displayNewScore();
 };
 
 const isLoseGame = () => {
-    if (score <= 0) {
+    if (score === 1) {
         loseGame = true;
-        document.querySelector('.message').textContent = 'You lost the game!🤡🤡🤡🤡🤡🤡🤡'
+        score--;
+        displayNewScore();
+        document.querySelector('.message').textContent = 'You lost the game!🤡🤡🤡🤡🤡🤡🤡';
     };
 };
 
