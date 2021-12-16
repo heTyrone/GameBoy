@@ -24,6 +24,8 @@ const clickEventhandler = () => {
         bingo();
     } else if (guessNumber > secretNumber) {
         bigger();
+    } else if (guessNumber < secretNumber) {
+        smaller();
     };
 };
 
@@ -36,4 +38,6 @@ const noValidInput = () => document.querySelector('.message').textContent = '�
 
 const bingo = () => document.querySelector('.message').textContent = '💃💃💃💃💃💃💃💃💃💃💃💃💃💃💃 Congratulations!!!';
 
-const bigger = () => document.querySelector('.message').textContent = 'bigger than secret number';
+const bigger = () => document.querySelector('.message').textContent = 'need smallerrrr';
+
+const smaller = () => document.querySelector('.message').textContent = 'need biggerrrrr';
