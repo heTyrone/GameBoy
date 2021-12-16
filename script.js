@@ -12,6 +12,8 @@
 
 const secretNumber = Math.trunc(Math.random() * 20) + 1;
 
+let score = 20;
+
 document.querySelector('.number').textContent = secretNumber;
 
 const clickEventhandler = () => {
@@ -23,9 +25,11 @@ const clickEventhandler = () => {
     } else if (guessNumber === secretNumber) {
         bingo();
     } else if (guessNumber > secretNumber) {
-        bigger();
+        biggerThanSecretNumber();
+        reduceScore();
     } else if (guessNumber < secretNumber) {
-        smaller();
+        smallerThanSecretNumber();
+        reduceScore();
     };
 };
 
@@ -38,6 +42,13 @@ const noValidInput = () => document.querySelector('.message').textContent = '�
 
 const bingo = () => document.querySelector('.message').textContent = '💃💃💃💃💃💃💃💃💃💃💃💃💃💃💃 Congratulations!!!';
 
-const bigger = () => document.querySelector('.message').textContent = 'need smallerrrr';
+const biggerThanSecretNumber = () => document.querySelector('.message').textContent = 'need smallerrrr';
 
-const smaller = () => document.querySelector('.message').textContent = 'need biggerrrrr';
+const smallerThanSecretNumber = () => document.querySelector('.message').textContent = 'need biggerrrrr';
+
+// const reduceScore = () => document.querySelector('.score').textContent = score - 1;
+
+const reduceScore = () => {
+    score--;
+    document.querySelector('.score').textContent = score
+};
