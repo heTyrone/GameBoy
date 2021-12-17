@@ -14,7 +14,7 @@ const secretNumber = Math.trunc(Math.random() * 20) + 1;
 
 let score = 20;
 
-let loseGame = false;
+let ifLoseGame = false;
 
 document.querySelector('.number').textContent = secretNumber;
 
@@ -25,16 +25,16 @@ const clickEventhandler = () => {
     if (!guessNumber) {
         noValidInput();
     } else if (guessNumber === secretNumber) {
-        bingo();
+        win();
     } else if (guessNumber > secretNumber) {
         isLoseGame();
-        if (!loseGame) {
+        if (!ifLoseGame) {
             biggerThanSecretNumber();
             changeScore();
         }
     } else if (guessNumber < secretNumber) {
         isLoseGame();
-        if (!loseGame) {
+        if (!ifLoseGame) {
             smallerThanSecretNumber();
             changeScore();
         }
@@ -50,26 +50,42 @@ const noValidInput = () => document.querySelector('.message').textContent = '�
 
 const bingo = () => document.querySelector('.message').textContent = '💃💃💃💃💃💃💃💃💃💃💃💃💃💃💃 Congratulations!!!';
 
+const defeat = () => document.querySelector('.message').textContent = 'You lost the game!🤡🤡🤡🤡🤡🤡🤡';
+
+const gameOver = () => {
+    defeat();
+    loseEffect();
+};
+
+const winEffect = () => document.querySelector('body').style.backgroundColor = '#60b347';
+
+const loseEffect = () => document.querySelector('body').style.backgroundColor = 'grey';
+
+const win = () => {
+    bingo();
+    winEffect();
+};
+
 const biggerThanSecretNumber = () => document.querySelector('.message').textContent = 'need smallerrrr';
 
 const smallerThanSecretNumber = () => document.querySelector('.message').textContent = 'need biggerrrrr';
 
 // const reduceScore = () => document.querySelector('.score').textContent = score - 1;
-const displayNewScore = () => document.querySelector('.score').textContent = score;
+const updateScore = () => document.querySelector('.score').textContent = score;
 
 const reduceScore = () => score--;
 
 const changeScore = () => {
     reduceScore();
-    displayNewScore();
+    updateScore();
 };
 
 const isLoseGame = () => {
     if (score === 1) {
-        loseGame = true;
+        ifLoseGame = true;
         score--;
-        displayNewScore();
-        document.querySelector('.message').textContent = 'You lost the game!🤡🤡🤡🤡🤡🤡🤡';
+        updateScore();
+        gameOver()
     };
 };
 
