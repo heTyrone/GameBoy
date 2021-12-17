@@ -16,8 +16,12 @@ let score = 20;
 
 let ifLoseGame = false;
 
-document.querySelector('.number').textContent = secretNumber;
-
+const showSecretNumber = () => document.querySelector('.number').textContent = secretNumber;
+const enlargeTheDisplaySectionOfSecretNumber = () => document.querySelector('.number').style.width = '30rem';
+const secretNumberDisplay = () => {
+    showSecretNumber();
+    enlargeTheDisplaySectionOfSecretNumber();
+}
 const clickEventhandler = () => {
     const guess = document.querySelector('.guess').value;
     const guessNumber = parseStringToNumber(guess);
@@ -25,7 +29,7 @@ const clickEventhandler = () => {
     if (!guessNumber) {
         noValidInput();
     } else if (guessNumber === secretNumber) {
-        win();
+        winTheGame();
     } else if (guessNumber > secretNumber) {
         isLoseGame();
         if (!ifLoseGame) {
@@ -54,6 +58,7 @@ const defeat = () => document.querySelector('.message').textContent = 'You lost 
 
 const gameOver = () => {
     defeat();
+    secretNumberDisplay();
     loseEffect();
 };
 
@@ -61,8 +66,9 @@ const winEffect = () => document.querySelector('body').style.backgroundColor = '
 
 const loseEffect = () => document.querySelector('body').style.backgroundColor = 'grey';
 
-const win = () => {
+const winTheGame = () => {
     bingo();
+    secretNumberDisplay();
     winEffect();
 };
 
